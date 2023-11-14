@@ -1,0 +1,20 @@
+numpy
+Cython
+Pillow
+scipy
+opencv-python
+yacs
+pandas
+setuptools
+datasets
+# torchvision
+wandb
+requests
+tqdm
+pymysql
+scikit-learn
+# torch
+boto3
+pymysql
+chardet
+tensorboard

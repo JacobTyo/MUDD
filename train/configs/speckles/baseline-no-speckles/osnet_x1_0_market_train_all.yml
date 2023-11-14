@@ -1,0 +1,43 @@
+model:
+  name: 'osnet_x1_0'
+  pretrained: True
+  load_weights: '/home/jtyo/Repos/PerformancePhotoRepos/performancereidTrainLITE/performancereidTrainLITE/train/weights/osnet_x1_0_market_256x128_amsgrad_ep150_stp60_lr0.0015_b64_fb10_softmax_labelsmooth_flip.pth'
+  resume: ''
+
+data:
+  sources: ['performancephoto']
+  targets: ['performancephoto']
+  save_dir: 'log/osnet_x1_0_market'
+  use_metric_cuhk03: True
+  transforms: ['random_flip', 'color_jitter', 'random_crop']
+
+performance:
+  endpoint: ''
+  username: ''
+  password: ''
+  database_name: ''
+  aws_access_key_id: ''
+  aws_secret_access_key: ''
+  region_name: ''
+  s3_bucket: ''
+
+train:
+  wandb_config: 'wandb_config.yaml'
+  max_epoch: 250
+  batch_size: 75
+  lr: 0.0003
+  lr_scheduler: 'cosine'
+  seed: 1
+  fixbase_epoch: 10
+  open_layers: ['conv1', 'conv2', 'conv3', 'conv4', 'conv5', 'global_avgpool', 'classifier']
+
+test:
+  batch_size: 6
+  eval_freq: 4
+  evaluate: False
+  ranks: [1, 5, 10]
+  visrank: False
+  visrank_topk: 10
+
+loss:
+  name: 'triplet'

@@ -1,0 +1,23 @@
+program: train/train.py
+method: bayes
+name: sweep
+metric:
+  name: Rank-1
+  goal: maximize
+parameters:
+  lr:
+    values: [0.0003, 0.0001, 0.00003]
+  max_epoch:
+    distribution: q_log_uniform_values
+    min: 10
+    max: 1000
+command:
+  - ${env}
+  - python3
+  - ${program}
+  - "--config-file"
+  - "config.yaml"
+  - "--opts"
+  - "train.batch_size 100"
+  - "train.lr_scheduler cosine"
+  - ${args}

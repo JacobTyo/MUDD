@@ -1,0 +1,37 @@
+model:
+  name: 'osnet_x1_0'
+  pretrained: True
+  load_weights: ''
+  resume: ''
+
+data:
+  sources: ['performancephoto']
+  targets: ['performancephoto']
+  save_dir: 'log/osnet_x1_0'
+  dataset_url: 'performance_url.json'
+
+performance:
+  endpoint: ''
+  username: ''
+  password: ''
+  database_name: ''
+  aws_access_key_id: ''
+  aws_secret_access_key: ''
+  region_name: ''
+  s3_bucket: ''
+
+train:
+  max_epoch: 2
+  batch_size: 6
+  lr: 0.0003
+
+test:
+  batch_size: 6
+  eval_freq: 1
+  evaluate: False
+  ranks: [1, 5, 10]
+  visrank: True
+  visrank_topk: 10
+
+loss:
+  name: 'triplet'
